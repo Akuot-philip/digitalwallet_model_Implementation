@@ -1,24 +1,7 @@
-# from ast import walk
-# from concurrent.futures.process import _python_exit
-# from ctypes.wintypes import PINT
-# from datetime import date, datetime
-# from email import message
-# from inspect import trace
-# from locale import currency
-# from multiprocessing.connection import wait
-# from operator import mod
-# from os import access
-# from symtable import Symbol
-# from telnetlib import STATUS
-# from turtle import title
-# from unicodedata import name
-# from email.policy import default
-# from tkinter import  TK   
-# import re
-# from tkinter import CASCADE
+
+from email.message import Message
 from django.db import models
-# from pkg_resources import load_entry_point
-# Create your models here.
+
 
 class Customer(models.Model):
     first_name=models.CharField(max_length=20)
@@ -26,12 +9,13 @@ class Customer(models.Model):
     address=models.TextField(default='') 
     email=models.EmailField()
     phone_number=models.CharField(max_length=15)
-    gender=models.CharField(max_length=10)
-    age=models.PositiveSmallIntegerField()
-    GENDER_CHOICES=(
+GENDER_CHOICES=(
         (1, 'Male'),
         (2, 'Female'),
     )
+    gender=models.CharField(max_length=10, choices= GENDER_CHOICES)
+    age=models.PositiveSmallIntegerField()
+   
 
 
 class Wallet(models.Model): 
@@ -54,7 +38,10 @@ class Transaction(models.Model):
     transaction_type=models.CharField(max_length=20)
     transaction_charge=models.IntegerField()
     datetime=models.DateTimeField()
-    TRANSACTION_CHOICES=(
+    origin_account=models.ForeignKey("Wallet",on_delete=models.CASCADE,related_name="transactions_origin")
+    destination_account=models.ForeignKey("Wallet",on_delete=models.CASCADE,related_name="transactions_destination")
+    message=models.CharField(max_length=20)
+    TRANSACTION_CHOICES= (
     ('D','Debit'),
     ('C','Credit'),
 
