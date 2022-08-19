@@ -28,6 +28,11 @@ class Customer(models.Model):
     phone_number=models.CharField(max_length=15)
     gender=models.CharField(max_length=10)
     age=models.PositiveSmallIntegerField()
+    GENDER_CHOICES=(
+        (1, 'Male'),
+        (2, 'Female'),
+    )
+
 
 class Wallet(models.Model): 
     user_name=models.CharField(max_length=20)
@@ -46,10 +51,14 @@ class Transaction(models.Model):
     transaction=models.CharField(max_length=40,)
     wallet=models.ForeignKey(Wallet,on_delete=models. CASCADE,related_name='Transaction_wallet')
     transaction_amount=models.IntegerField()
-    transaction_amount=models.IntegerField()
     transaction_type=models.CharField(max_length=20)
     transaction_charge=models.IntegerField()
     datetime=models.DateTimeField()
+    TRANSACTION_CHOICES=(
+    ('D','Debit'),
+    ('C','Credit'),
+
+    )
 
 class Reward(models.Model):
     points=models.BigIntegerField()
@@ -96,6 +105,12 @@ class Account(models.Model):
     balance = models.IntegerField()
     name=models.CharField(max_length=20)
     wallet = models.ForeignKey(Wallet,on_delete=models.CASCADE,related_name='Account_currency')
+    ACCOUNTTYPE_CHOICES = (
+        ('W','   Withdraw'),
+        ('S','   Savings'),
+        ('D','   Deposit'),
+
+    )
 
 class ThirdPartyAccount(models.Model):
     account = models.ForeignKey('account',on_delete=models.CASCADE,related_name='account_third_party')
