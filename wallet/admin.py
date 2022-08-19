@@ -56,8 +56,17 @@ class NotificationsAdmin(admin.ModelAdmin):
    search_fields=("messages", "title", "status", "recepients","datetime")
 admin.site.register(Notifications,NotificationsAdmin)
 
+class RewardAdmin(admin.ModelAdmin):
+   list_display =("points","date_of_reward","transaction_amount")
+   search_fields=("points","date_of_reward","transaction_amount")
+admin.site.register(Reward,RewardAdmin)
 
+class ThirdpartyAdmin(admin.ModelAdmin):
+   list_display =("account","name","transaction_cost","currency","location")
+   search_fields=("points","name","transaction_cost","currency","location")
+admin.site.register(ThirdPartyAccount, ThirdpartyAdmin)
 
-admin.site.register(Reward)
-admin.site.register(Receipt)
-admin.site.register(ThirdPartyAccount)
+class ReceiptAdmin(admin.ModelAdmin):
+   list_display =("receipt_type","receipt_date","transaction","total_amount","receipt_file")
+   search_fields=("receipt_type","receipt_date","transaction","total_amount","transaction")
+admin.site.register(Receipt, ReceiptAdmin)
