@@ -18,7 +18,6 @@
 # from tkinter import CASCADE
 from django.db import models
 # from pkg_resources import load_entry_point
-
 # Create your models here.
 
 class Customer(models.Model):
@@ -60,7 +59,7 @@ class Reward(models.Model):
 class Receipt(models.Model):
     receipt_type=models.CharField(max_length=6)
     receipt_date=models.DateTimeField()
-    trnsaction=models.IntegerField()
+    transaction=models.IntegerField()
     total_amount=models.IntegerField()
     receipt_file=models.FileField()
 
