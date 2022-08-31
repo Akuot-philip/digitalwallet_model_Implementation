@@ -8,7 +8,7 @@ from .models import Loan
 from .models import Notifications
 from .models import Card
 from .models import Account
-from .models import ThirdPartyAccount
+from .models import ThirdParty
 from .models import Currency
 from django.contrib import admin
 
@@ -61,7 +61,7 @@ admin.site.register(Reward,RewardAdmin)
 class ThirdpartyAdmin(admin.ModelAdmin):
    list_display =("account","name","transaction_cost","currency","location",)
    search_fields=("points","name","transaction_cost","currency","location",)
-admin.site.register(ThirdPartyAccount, ThirdpartyAdmin)
+admin.site.register(ThirdParty, ThirdpartyAdmin)
 
 class ReceiptAdmin(admin.ModelAdmin):
    list_display =("receipt_type","receipt_date","total_amount","receipt_file",)

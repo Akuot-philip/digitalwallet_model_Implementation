@@ -9,11 +9,11 @@ class Customer(models.Model):
     address=models.TextField(default='') 
     email=models.EmailField()
     phone_number=models.CharField(max_length=15)
-GENDER_CHOICES=(
+    GENDER_CHOICES=(
         (1, 'Male'),
         (2, 'Female'),
     )
-    gender=models.CharField(max_length=10, choices= GENDER_CHOICES)
+    gender=models.CharField(max_length=6,choices= GENDER_CHOICES)
     age=models.PositiveSmallIntegerField()
    
 
@@ -38,9 +38,9 @@ class Transaction(models.Model):
     transaction_type=models.CharField(max_length=20)
     transaction_charge=models.IntegerField()
     datetime=models.DateTimeField()
-    origin_account=models.ForeignKey("Wallet",on_delete=models.CASCADE,related_name="transactions_origin")
-    destination_account=models.ForeignKey("Wallet",on_delete=models.CASCADE,related_name="transactions_destination")
-    message=models.CharField(max_length=20)
+    origin_account=models.ForeignKey("Wallet",on_delete=models.CASCADE,related_name="transactions_origin", null=True)
+    destination_account=models.ForeignKey("Wallet",on_delete=models.CASCADE,related_name="transactions_destination", null= True)
+    message=models.CharField(max_length=20, null= True)
     TRANSACTION_CHOICES= (
     ('D','Debit'),
     ('C','Credit'),
@@ -99,7 +99,7 @@ class Account(models.Model):
 
     )
 
-class ThirdPartyAccount(models.Model):
+class ThirdParty(models.Model):
     account = models.ForeignKey('account',on_delete=models.CASCADE,related_name='account_third_party')
     name = models.CharField(max_length=20)
     transaction_cost = models.IntegerField()
