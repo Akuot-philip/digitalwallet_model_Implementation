@@ -8,6 +8,12 @@ class CustomerRegistrationForm(forms.ModelForm):
     class Meta:
         model=Customer
         fields ="__all__"
+        widgets={
+            "first_name":forms.TextInput(attrs={'class':"form-control"}),
+
+
+        }
+        
 
 class CurrencyRegistrationForm(forms.ModelForm):
     class Meta:

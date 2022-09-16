@@ -10,8 +10,8 @@ class Customer(models.Model):
     email=models.EmailField()
     phone_number=models.CharField(max_length=15)
     GENDER_CHOICES=(
-        (1, 'Male'),
-        (2, 'Female'),
+        ('M','Male'),
+        ('F','Female'),
     )
     gender=models.CharField(max_length=6,choices= GENDER_CHOICES)
     age=models.PositiveSmallIntegerField()

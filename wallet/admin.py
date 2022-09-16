@@ -24,7 +24,7 @@ class WalletAdmin(admin.ModelAdmin):
 admin.site.register(Wallet, WalletAdmin)
 
 class TransactionAdmin(admin.ModelAdmin):
-    list_display =("transaction", "wallet","transaction_amount","transaction_type","transaction_charge","transaction_type","destination_account","origin_account","message")
+    list_display =("transaction", "wallet","transaction_amount","transaction_type","transaction_charge","destination_account","origin_account","message")
     search_fields=("transaction", "wallet","transaction_amount","transaction_type",)
 admin.site.register(Transaction,TransactionAdmin)
 
